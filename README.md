@@ -1,18 +1,61 @@
-# Salesforce DX Project: Next Steps
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+# Conference App – Salesforce LWC Assessment
 
-## How Do You Plan to Deploy Your Changes?
+## Overview
+Conference App is a Salesforce Lightning application built using **Lightning Web Components (LWC)**, **Apex**, and **Lightning Message Service (LMS)**.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+The application allows users to:
+- Search speakers by name and speciality
+- View speaker details
+- Assign speakers to sessions
+- Prevent overlapping session assignments
+- Visually view booked dates using a custom calendar (Bonus feature)
 
-## Configure Your Salesforce DX Project
+This solution follows Salesforce best practices by separating UI validation and backend business logic.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+---
 
-## Read All About It
+## Features Implemented
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+### 1. Speaker Search (Left Panel)
+- Search speakers using:
+  - Name
+  - Speciality
+- Displays results in a **lightning-datatable**
+- Each row contains a **Book Session** button
+
+---
+
+### 2. Speaker Details (Right Panel)
+- Displays selected speaker details:
+  - Name
+  - Speciality
+  - Bio
+- Data is received using **Lightning Message Service (LMS)**
+
+---
+
+### 3. Session Booking
+- User selects a **future date**
+- Clicking **Create Assignment**:
+  - Automatically creates a Session if one does not exist
+  - Creates a Speaker_Assignment__c record
+- Toast messages indicate success or failure
+
+---
+
+### 4. Conflict Handling (Core Requirement)
+- A speaker **cannot be assigned to overlapping sessions**
+- Implemented using an **Apex Trigger**
+- Same date with different time is allowed
+- Same date with overlapping time is blocked
+
+The trigger is the final authority for conflict validation.
+
+---
+
+
+---
+
+## Architecture
+
