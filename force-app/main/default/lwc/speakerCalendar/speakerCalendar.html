@@ -1,0 +1,14 @@
+<template>
+    <div class="calendar">
+        <template for:each={days} for:item="day">
+            <div
+    key={day.date}
+    class={day.className}
+    data-date={day.date}
+    onclick={handleSelect}>
+
+                {day.label}
+            </div>
+        </template>
+    </div>
+</template>

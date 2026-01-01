@@ -1,0 +1,14 @@
+<template>
+    <lightning-input
+        label="Name"
+        onchange={handleName}>
+    </lightning-input>
+
+    <lightning-combobox
+        label="Speciality"
+        options={specialityOptions}
+        onchange={handleSpeciality}>
+    </lightning-combobox>
+
+    <c-speaker-list speakers={speakers}></c-speaker-list>
+</template>

@@ -1,0 +1,26 @@
+<template>
+    <template if:true={speaker}>
+        <lightning-card title="Speaker Details">
+            <p><b>Name:</b> {speaker.Name}</p>
+            <p><b>Speciality:</b> {speaker.Speciality_c__c}</p>
+            <p><b>Bio:</b> {speaker.Bio__c}</p>
+
+            <lightning-input
+                type="date"
+                label="Select Session Date"
+                onchange={handleDate}>
+            </lightning-input>
+
+            <lightning-button
+                label="Create Assignment"
+                variant="brand"
+                onclick={createAssignment}
+                disabled={disabled}>
+            </lightning-button>
+        </lightning-card>
+    </template>
+
+    <template if:false={speaker}>
+        <p>Select a speaker</p>
+    </template>
+</template>
